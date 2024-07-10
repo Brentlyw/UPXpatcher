@@ -1,0 +1,12 @@
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.vbproj.AssemblyReference.cache
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.vbproj.SuggestedBindingRedirects.cache
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.Resources.resources
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.vbproj.GenerateResource.cache
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.vbproj.CoreCompileInputs.cache
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\bin\Debug\UPXPatch.exe.config
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\bin\Debug\UPXPatch.exe
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\bin\Debug\UPXPatch.pdb
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\bin\Debug\UPXPatch.xml
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.exe
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.xml
+C:\Users\TRR\source\repos\UPXPatch\UPXPatch\obj\Debug\UPXPatch.pdb
