@@ -1,5 +1,5 @@
 # UPXpatcher
-A UPX patcher to prevent the use of "-d"
+*A UPX patcher to prevent the use of "-d"*
 
 Currently modifies the following:
 
