@@ -4,6 +4,7 @@ A UPX patcher to prevent the use of "-d"
 Currently modifies the following:
 
 Modifys the section characteristics
+
 Modifys section headers
 Modifys the PE header fields such as timestamp and checksum
 Modifys the import table by adding dummy functions or modifying existing ones
