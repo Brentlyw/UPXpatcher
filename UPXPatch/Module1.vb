@@ -33,7 +33,7 @@ Module Module1
                 Console.ForegroundColor = ConsoleColor.Yellow
                 StdOut.Log("Randomizing Section Names...")
 
-                ' Commented out for now to isolate the issue
+
                 bytesReplacer.PatchBytes(fileName, {&H55, &H50, &H58, &H30, &H0}, GenerateRandomSectionName())
                 bytesReplacer.PatchBytes(fileName, {&H55, &H50, &H58, &H31, &H0}, GenerateRandomSectionName())
                 bytesReplacer.PatchBytes(fileName, {&H55, &H50, &H58, &H32, &H0}, GenerateRandomSectionName())
@@ -54,7 +54,7 @@ Module Module1
 
                 StdOut.Log("Randomizing Standard DOS Message...")
 
-                ' Commented out for now to isolate the issue
+
                 bytesReplacer.PatchBytes(fileName, Encoding.ASCII.GetBytes("This program cannot be run in DOS mode."),
                 Encoding.ASCII.GetBytes(GenerateRandomMessage()))
 
@@ -117,7 +117,7 @@ Module Module1
         Dim randomPadding(paddingSize - 1) As Byte
         rnd.NextBytes(randomPadding)
 
-        ' Add padding at the end of the file
+
         Dim newFileBytes As Byte() = New Byte(fileBytes.Length + randomPadding.Length - 1) {}
         Array.Copy(fileBytes, newFileBytes, fileBytes.Length)
         Array.Copy(randomPadding, 0, newFileBytes, fileBytes.Length, randomPadding.Length)
@@ -158,7 +158,7 @@ Public Class Patcher
         Dim upxHeaderPattern As Byte() = {&H55, &H50, &H58, &H21} ' UPX!
         Dim offset As Integer = FindSequence(fileBytes, upxHeaderPattern)
         If offset <> -1 Then
-            ' Modify the UPX header to confuse signature-based detections
+
             Dim randomBytes(3) As Byte
             rnd.NextBytes(randomBytes)
             Array.Copy(randomBytes, 0, fileBytes, offset, randomBytes.Length)
@@ -168,10 +168,10 @@ Public Class Patcher
 
     Public Sub ModifyImportTable(fileName As String)
         Dim fileBytes As Byte() = File.ReadAllBytes(fileName)
-        ' Modify the import table by adding dummy functions or modifying existing ones
+
         Dim importTableOffset As Integer = FindImportTableOffset(fileBytes)
         If importTableOffset <> -1 Then
-            Dim importTableLength As Integer = &H40 ' Example length, adjust as needed
+            Dim importTableLength As Integer = &H40
             Dim randomBytes(importTableLength - 1) As Byte
             rnd.NextBytes(randomBytes)
             Array.Copy(randomBytes, 0, fileBytes, importTableOffset, randomBytes.Length)
@@ -182,7 +182,7 @@ Public Class Patcher
     Public Sub ModifyPEHeaderAndSections(fileName As String)
         Dim fileBytes As Byte() = File.ReadAllBytes(fileName)
         Dim peHeaderOffset As Integer = BitConverter.ToInt32(fileBytes, &H3C)
-        ' Modify the PE header fields such as timestamp and checksum
+
         Dim timestampOffset As Integer = peHeaderOffset + &H8
         Dim checksumOffset As Integer = peHeaderOffset + &H58
         Dim newTimestamp As Integer = rnd.Next()
@@ -190,7 +190,7 @@ Public Class Patcher
         Array.Copy(BitConverter.GetBytes(newTimestamp), 0, fileBytes, timestampOffset, 4)
         Array.Copy(BitConverter.GetBytes(newChecksum), 0, fileBytes, checksumOffset, 4)
 
-        ' Modify section headers
+
         Dim numberOfSections As Integer = BitConverter.ToInt16(fileBytes, peHeaderOffset + &H6)
         Dim sectionHeaderOffset As Integer = peHeaderOffset + &HF8
         For i As Integer = 0 To numberOfSections - 1
@@ -218,7 +218,7 @@ Public Class Patcher
 
     Public Sub AddDummyImports(fileName As String)
         Dim fileBytes As Byte() = File.ReadAllBytes(fileName)
-        ' Add dummy import functions to obfuscate the import table
+
         Dim dummyImports As String() = {"hgvnb84e975", "fjd239483", "dij23e9802"}
         Dim importTableOffset As Integer = FindImportTableOffset(fileBytes)
         If importTableOffset <> -1 Then
@@ -238,7 +238,7 @@ Public Class Patcher
         Dim numberOfSections As Integer = BitConverter.ToInt16(fileBytes, peHeaderOffset + &H6)
         For i As Integer = 0 To numberOfSections - 1
             Dim sectionOffset As Integer = sectionHeaderOffset + (i * &H28)
-            ' Modify the section characteristics
+
             Dim newCharacteristics As Integer = rnd.Next()
             Array.Copy(BitConverter.GetBytes(newCharacteristics), 0, fileBytes, sectionOffset + &H24, 4)
         Next
@@ -301,7 +301,7 @@ End Class
 
 Public Class PE
     Public Shared Function Is64(fileName As String) As Boolean
-        ' Simplistic check, you may need a more robust method to determine if the PE is 64-bit
+
         Dim fileBytes As Byte() = File.ReadAllBytes(fileName)
         Dim peHeaderOffset As Integer = BitConverter.ToInt32(fileBytes, &H3C)
         Dim machine As UInt16 = BitConverter.ToUInt16(fileBytes, peHeaderOffset + 4)
