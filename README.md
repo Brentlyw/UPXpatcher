@@ -1,6 +1,8 @@
 # UPXpatcher
 *A UPX patcher to prevent the use of "-d"*
 
+*Prevents signature matching of UPX by Detect it Easy*
+
 Currently modifies the following:
 
 Modifys the section characteristics
